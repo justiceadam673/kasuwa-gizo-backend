@@ -16,6 +16,7 @@ app.use(express.json());
 // Routes
 app.use("/kasuwa/user", UserRoute);
 
+
 // Error handler
 app.use((err, req, res, next) => {
   const status = err.status || 500;

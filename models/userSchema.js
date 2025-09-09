@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
 
+
 const schema = new Schema({
   fullName: {
     type: String,
