@@ -5,6 +5,7 @@ import connectDB from "./config/db.js";
 // routes
 
 import UserRoute from "./routes/signup.route.js";
+import SigninRoute from "./routes/signin.route.js";
 
 dotenv.config();
 const app = express();
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
 app.use(express.json());
 // Routes
 app.use("/kasuwa/user", UserRoute);
+app.use("/kasuwa/signin", SigninRoute);
 
 
 // Error handler
