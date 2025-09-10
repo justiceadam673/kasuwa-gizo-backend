@@ -1,6 +1,6 @@
 import { Router } from "express";
 import Product from "../models/product.js";
-import upload from "../middleware/upload.js";        
+import upload from "../middleware/multer.js";        
 import cloudinary from "../config/cloudinary.js";   
 
 const router = Router();
@@ -8,7 +8,7 @@ const router = Router();
 // CREATE Product (with Cloudinary upload)
 router.post("/", upload.single("image"), async (req, res, next) => {
   try {
-    let imageUrl = null;
+     let imageUrl = null;
 
     if (req.file) {
       // Upload to Cloudinary

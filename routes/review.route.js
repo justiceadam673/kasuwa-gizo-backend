@@ -1,5 +1,5 @@
  import { Router } from "express";
-import Review from("../models/review.js");
+import Review from "../models/review.js";
 
 const router = Router();
 
@@ -58,4 +58,4 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
-module.exports = router;
+export default router;

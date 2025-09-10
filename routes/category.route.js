@@ -1,5 +1,5 @@
 import { Router } from "express";
-import Category from ("../models/category.js");
+import Category from "../models/category.js";
 
 const router = Router();
 
@@ -59,4 +59,4 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
-module.exports = router;
+export default router;
