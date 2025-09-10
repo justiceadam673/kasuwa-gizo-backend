@@ -1,3 +1,4 @@
+dotenv.config();
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
@@ -6,17 +7,29 @@ import connectDB from "./config/db.js";
 
 import UserRoute from "./routes/signup.route.js";
 import SigninRoute from "./routes/signin.route.js";
+import productRoute from ("./routes/product.route.js");
+import categoryRoute from ("./routes/category.route.js");
+import orderRoute from ("./routes/order.route.js");
+import reviewRoute from ("./routes/review.route.js");
+import multer from "multer";
+import path from "path";
 
-dotenv.config();
+
+
 const app = express();
 
 app.get("/", (req, res) => {
   res.send("hello this is working");
 });
 app.use(express.json());
-// Routes
+// API Routes
 app.use("/kasuwa/user", UserRoute);
 app.use("/kasuwa/signin", SigninRoute);
+app.use("/kasuwa/product", productRoute);
+app.use("/kasuwa/category", categoryRoute);
+app.use("/kasuwa/order", orderRoute);
+app.use("/kasuwa/review", reviewRoute);
+
 
 
 // Error handler
