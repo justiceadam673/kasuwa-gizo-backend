@@ -14,6 +14,7 @@ import SocialMedia from "./models/socialMedia.js";
 import VendorProfile from "./models/vendorProfile.js";
 import Company from "./models/company.js";
 import Visitor from "./models/visitor.js";
+import ListingVisitor from "./models/listing.js";
 
 dotenv.config();
 const app = express();
@@ -37,6 +38,7 @@ app.use("/kasuwa/socialmedia", SocialMedia);
 app.use("/kasuwa/vendorprofile", VendorProfile);
 app.use("/kasuwa/company", Company);
 app.use("/kasuwa/visitor", Visitor);
+app.use("/kasuwa/listing", ListingVisitor);
 
 // Error handler
 app.use((err, req, res, next) => {
