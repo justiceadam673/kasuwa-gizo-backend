@@ -49,8 +49,8 @@ const productSchema = new mongoose.Schema(
           required: true,
         },
         name: { type: String, required: true },
-        rating: { type: Number, required: true },
-        comment: { type: String, required: true },
+        rating: { type: Number, default: 0 },
+        comment: { type: String},
       },
     ],
     createdBy: {
