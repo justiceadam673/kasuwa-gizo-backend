@@ -6,12 +6,45 @@ import cloudinary from "../config/cloudinary.js";
 const router = Router();
 
 // CREATE Product (with Cloudinary upload)
+// router.post("/", upload.single("image"), async (req, res, next) => {
+//   try {
+//      let imageUrl = null;
+
+//     if (req.file) {
+//       // Upload to Cloudinary
+//       const result = await new Promise((resolve, reject) => {
+//         const stream = cloudinary.uploader.upload_stream(
+//           { folder: "products" },
+//           (error, result) => {
+//             if (error) reject(error);
+//             else resolve(result);
+//           }
+//         );
+//         stream.end(req.file.buffer); 
+//       });
+
+//       imageUrl = result.secure_url;
+//     }
+
+//     // Create new product with Cloudinary image URL
+//     const product = new Product({
+//       ...req.body,
+//       image: imageUrl, // 👈 saved in MongoDB
+//     });
+
+//     await product.save();
+//     res.status(201).json({ success: true, product });
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
 router.post("/", upload.single("image"), async (req, res, next) => {
   try {
-     let imageUrl = null;
+    let imageUrl = null;
 
     if (req.file) {
-      // Upload to Cloudinary
+      // Upload buffer directly to Cloudinary
       const result = await new Promise((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream(
           { folder: "products" },
@@ -20,19 +53,20 @@ router.post("/", upload.single("image"), async (req, res, next) => {
             else resolve(result);
           }
         );
-        stream.end(req.file.buffer); 
+        stream.end(req.file.buffer); // ✅ works with memoryStorage
       });
 
-      imageUrl = result.secure_url;
+        imageUrl = result.secure_url;
     }
 
-    // Create new product with Cloudinary image URL
+    // Save product with Cloudinary URL
     const product = new Product({
       ...req.body,
-      image: imageUrl, // 👈 saved in MongoDB
+      image: imageUrl,
     });
 
     await product.save();
+
     res.status(201).json({ success: true, product });
   } catch (err) {
     next(err);
