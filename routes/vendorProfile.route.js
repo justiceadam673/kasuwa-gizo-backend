@@ -1,5 +1,7 @@
 import {Router} from "express";
 import VendorProfile from "../models/vendorProfile.js";
+import { paginateAndSearch } from "../utils/pagination";
+
 const router = Router();
 
 // CREATE VendorProfile

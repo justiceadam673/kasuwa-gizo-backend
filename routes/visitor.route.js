@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Visitor from "../models/visitor.js";
+import { paginateAndSearch } from "../utils/pagination";
 
 const router = Router();
 // CREATE Visitor

@@ -1,57 +1,59 @@
 import { Router } from "express";
-import Visitor from "../models/visitor.js";
+import ListingVisitor from "../models/listing.js";
+import { paginateAndSearch } from "../utils/pagination";
 
 const router = Router();
 
-// CREATE Visitor
-router.post("/", async (req, res, next) => {
-  try {
-    const visitor = new Visitor(req.body);
-    await visitor.save();
-    res.status(201).json({ success: true, visitor });
-  } catch (err) {
-    next(err);
-  }
-});
+// CREATE LISTING
 
-// READ ALL Visitors
-router.get("/", async (req, res, next) => {
-  try {
-    const visitors = await Visitor.find();
-    res.json({ success: true, visitors });
-  } catch (err) {
-    next(err);
-  }
-});
-// READ SINGLE Visitor
-router.get("/:id", async (req, res, next) => {
+router.post("/", async (req, res, next) => {
+    const listing = new ListingVisitor(req.body);
     try {
-        const visitor = await Visitor.findById(req.params.id);
-        if (!visitor) return res.status(404).json({ success: false, message: "Visitor not found" });
-        res.json({ success: true, visitor });
+        await listing.save();
+        res.status(201).json({ success: true, listing });
     } catch (err) {
         next(err);
     }
 });
-// UPDATE Visitor
+
+// READ ALL LISTINGS
+router.get("/", async (req, res, next) => {
+    try {
+        const listings = await ListingVisitor.find();
+        res.json({ success: true, listings });
+    } catch (err) {
+        next(err);
+    }
+});
+// READ SINGLE LISTING
+router.get("/:id", async (req, res, next) => {
+    try {
+        const listing = await ListingVisitor.findById(req.params.id);
+        if (!listing) return res.status(404).json({ success: false, message: "Listing not found" });
+        res.json({ success: true, listing });
+    } catch (err) {
+        next(err);
+    }
+});
+// UPDATE LISTING
 router.put("/:id", async (req, res, next) => {
-  try {
-    const visitor = await Visitor.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!visitor) return res.status(404).json({ success: false, message: "Visitor not found" });
-    res.json({ success: true, visitor });
-  } catch (err) {
-    next(err);
-  }
+    try {
+        const listing = await ListingVisitor.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!listing) return res.status(404).json({ success: false, message: "Listing not found" });
+        res.json({ success: true, listing });
+    } catch (err) {
+        next(err);
+    }
 });
 
-// DELETE Visitor
+// DELETE LISTING
 router.delete("/:id", async (req, res, next) => {
-  try {
-    const visitor = await Visitor.findByIdAndDelete(req.params.id);
-    if (!visitor) return res.status(404).json({ success: false, message: "Visitor not found" });
-    res.json({ success: true, message: "Visitor deleted" });
-  } catch (err) {
-    next(err);
-  }
+    try {
+        const listing = await ListingVisitor.findByIdAndDelete(req.params.id);
+        if (!listing) return res.status(404).json({ success: false, message: "Listing not found" });
+        res.json({ success: true, message: "Listing deleted" });
+    } catch (err) {
+        next(err);
+    }
 });
-export default router;
+
