@@ -2,32 +2,30 @@ import mongoose from "mongoose";
 import { Schema } from "mongoose";
 
 const schema = new Schema({
-  fullName: {
+  businessName: {
     type: String,
     required: true,
   },
-  email: {
+  businessEmail: {
+    type: String,
+  },
+  businessCategory: {
     type: String,
     required: true,
-    unique: true,
+  },
+  businessPhone: {
+    type: Number,
+    required: true,
+  },
+  businessLocation: {
+    type: String,
+    required: true,
   },
   password: {
     type: String,
     required: true,
   },
-  phoneNumber: {
-    type: Number,
-  },
-  gender: {
-    type: String,
-  },
-  bio: {
-    type: String,
-  },
-  profilePicture: {
-    type: String,
-  },
 });
 
-const User = mongoose.model("User", schema);
-export default User;
+const BusinessInfo = mongoose.model("BusinessInfo", schema);
+export default BusinessInfo;
