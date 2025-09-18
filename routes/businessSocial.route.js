@@ -1,5 +1,5 @@
 import { Router } from "express";
-import BusinessSocial from "../models/businessSocials";
+import BusinessSocial from "../models/businessSocials.js";
 const router = Router();
 
 // CREATE BusinessSocial
