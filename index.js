@@ -15,17 +15,21 @@ import VendorProfile from "./models/vendorProfile.js";
 import Company from "./models/company.js";
 import Visitor from "./models/visitor.js";
 import ListingVisitor from "./models/listing.js";
+import businessInfoRoute from "./routes/businessInfo.route.js";
+import businessSocialRoute from "./routes/businessSocial.route.js";
 
 dotenv.config();
 const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors({
-  origin: process.env.FRONTEND_URL || "http://localhost:7890",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "http://localhost:7890",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 // Routes
 app.use("/kasuwa/user", UserRoute);
@@ -39,6 +43,13 @@ app.use("/kasuwa/vendorprofile", VendorProfile);
 app.use("/kasuwa/company", Company);
 app.use("/kasuwa/visitor", Visitor);
 app.use("/kasuwa/listing", ListingVisitor);
+app.use("/kasuwa/businessinfo", businessInfoRoute);
+app.use("/kasuwa/businesssocial", businessSocialRoute);
+
+// // Basic route
+// app.get("/", (req, res) => {
+//   res.send("API is running...");
+// });
 
 // Error handler
 app.use((err, req, res, next) => {
