@@ -25,9 +25,9 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:7890",
+    origin: [process.env.FRONTEND_URL, "http://localhost:3000"],
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
+    // credentials: true,
   })
 );
 
@@ -59,7 +59,7 @@ app.use((err, req, res, next) => {
 });
 
 // Connect and start server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 7890;
 connectDB()
   .then(() => {
     app.listen(PORT, () => {
