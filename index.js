@@ -17,6 +17,7 @@ import Visitor from "./models/visitor.js";
 import ListingVisitor from "./models/listing.js";
 import businessInfoRoute from "./routes/businessInfo.route.js";
 import businessSocialRoute from "./routes/businessSocial.route.js";
+import paystackRoute from "./routes/paystack.route.js";
 
 dotenv.config();
 const app = express();
@@ -45,6 +46,7 @@ app.use("/kasuwa/visitor", Visitor);
 app.use("/kasuwa/listing", ListingVisitor);
 app.use("/kasuwa/businessinfo", businessInfoRoute);
 app.use("/kasuwa/businesssocial", businessSocialRoute);
+app.use("/kasuwa/pay", paystackRoute);
 
 // // Basic route
 // app.get("/", (req, res) => {
@@ -59,7 +61,7 @@ app.use((err, req, res, next) => {
 });
 
 // Connect and start server
-const PORT = process.env.PORT || 7890;
+const PORT = process.env.PORT || 3000;
 connectDB()
   .then(() => {
     app.listen(PORT, () => {
