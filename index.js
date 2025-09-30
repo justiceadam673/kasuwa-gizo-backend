@@ -18,6 +18,7 @@ import ListingVisitor from "./models/listing.js";
 import businessInfoRoute from "./routes/businessInfo.route.js";
 import businessSocialRoute from "./routes/businessSocial.route.js";
 import paystackRoute from "./routes/paystack.route.js";
+import auth from "./routes/auth.route.js";
 
 dotenv.config();
 const app = express();
@@ -33,8 +34,9 @@ app.use(
 );
 
 // Routes
-app.use("/kasuwa/user", UserRoute);
-app.use("/kasuwa/signin", SigninRoute);
+// app.use("/kasuwa/user", UserRoute);
+// app.use("/kasuwa/signin", SigninRoute);
+app.use("/kasuwa/auth", auth);
 app.use("/kasuwa/product", productRoute);
 app.use("/kasuwa/category", categoryRoute);
 app.use("/kasuwa/order", orderRoute);
