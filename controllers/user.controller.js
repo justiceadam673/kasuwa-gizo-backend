@@ -16,7 +16,7 @@ export const signup = async (req, res, next) => {
       return next(
         createError(400, "User with that email or full name already exists")
       );
-    
+    }
 
     // Hash password
     const salt = bcrypt.genSaltSync(10);
