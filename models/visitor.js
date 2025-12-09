@@ -15,6 +15,7 @@ const visitorSchema = new Schema({
         type: Date,
         default: Date.now,
     },
+    {},
 }, { timestamps: true });
 
 const Visitor = mongoose.models.Visitor || mongoose.model("Visitor", visitorSchema);
