@@ -22,12 +22,12 @@ export const signup = async (req, res, next) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
 
-    // // Create new user
-    // const newUser = new User({
-    //   fullName,
-    //   email,
-    //   password: hash,
-    // });
+    // Create new user
+    const newUser = new User({
+      fullName,
+      email,
+      password: hash,
+    });
 
     await newUser.save();
 
